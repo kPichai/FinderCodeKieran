@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class Finder {
 
-    private static final int p = 100519;
+    private static final int p = 100003;
     private static final int radix = 256;
     private static final String INVALID = "INVALID KEY";
     private ArrayList<Node>[] hashTable = new ArrayList[p];
@@ -36,6 +36,10 @@ public class Finder {
     }
 
     public void addToHashTable(Node n) {
+        int hash = hash(n.getKey());
+        if (hashTable[hash] == null) {
+            hashTable[hash] = new ArrayList<Node>();
+        }
         hashTable[hash(n.getKey())].add(n);
     }
 
@@ -53,6 +57,9 @@ public class Finder {
 
     public String query(String key){
         ArrayList<Node> keyValSet = hashTable[hash(key)];
+        if (keyValSet == null) {
+            return INVALID;
+        }
         for (Node n : keyValSet) {
             if (n.getKey().equals(key)) {
                 return n.getValue();
