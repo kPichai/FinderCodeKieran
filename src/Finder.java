@@ -31,7 +31,7 @@ public class Finder {
             key = cur[keyCol];
             val = cur[valCol];
 //            addToHashTable(new Node(key, val));
-
+            h.add(new Node(key, val));
             line = br.readLine();
         }
         br.close();

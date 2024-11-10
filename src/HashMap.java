@@ -15,7 +15,22 @@ public class HashMap {
         curArraySize = 2 * curArraySize;
         hashMap = new Node[curArraySize];
         for (int i = 0; i < curArraySize / 2; i++) {
+            if (hashMap[i] == null) {
+                continue;
+            }
             add(hashMap[i]);
+        }
+    }
+
+    public void newResize() {
+        curArraySize = 2 * curArraySize;
+        Node[] temp = hashMap;
+        hashMap = new Node[curArraySize];
+        for (int i = 0; i < temp.length; i++) {
+            if (temp[i] == null) {
+                continue;
+            }
+            add(temp[i]);
         }
     }
 
@@ -30,7 +45,7 @@ public class HashMap {
         hashMap[newSpot] = n;
         curElements++;
         if ((float) curElements / curArraySize > maxFill) {
-            resize();
+            newResize();
         }
     }
 
