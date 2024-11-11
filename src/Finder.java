@@ -12,12 +12,11 @@ import java.util.ArrayList;
  **/
 
 public class Finder {
-
     // Final instance variables used for hashing or for linear probing hash maps
     private static final int p = 100003;
     private static final int radix = 256;
     private static final String INVALID = "INVALID KEY";
-    // private ArrayList<Node>[] hashTable = new ArrayList[p];
+//     private ArrayList<Node>[] hashTable = new ArrayList[p];
     private HashMap h = new HashMap();
 
     public Finder() {}
@@ -34,7 +33,7 @@ public class Finder {
             key = cur[keyCol];
             val = cur[valCol];
             // Code below is for the linked list hash table implementation
-            // addToHashTable(new Node(key, val));
+//             addToHashTable(new Node(key, val));
             // This code is for the linear probing approach
             h.add(new Node(key, val));
             line = br.readLine();
