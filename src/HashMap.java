@@ -1,16 +1,19 @@
 public class HashMap {
+    // Final parameters for tweaking fill level and inital array size for linear probing
     private final float maxFill = (float)1 / 2;
-    private final int arrSize = 10079;
+    private final int arrSize = 20047;
     private int curArraySize;
     private int curElements;
     private Node[] hashMap;
 
+    // Constructor to initialize the starting hash table
     public HashMap() {
         hashMap = new Node[arrSize];
         curArraySize = arrSize;
         curElements = 0;
     }
 
+    //
     public void resize() {
         curArraySize = 2 * curArraySize;
         hashMap = new Node[curArraySize];

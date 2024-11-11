@@ -13,15 +13,18 @@ import java.util.ArrayList;
 
 public class Finder {
 
+    // Final instance variables used for hashing or for linear probing hash maps
     private static final int p = 100003;
     private static final int radix = 256;
     private static final String INVALID = "INVALID KEY";
-//    private ArrayList<Node>[] hashTable = new ArrayList[p];
+    // private ArrayList<Node>[] hashTable = new ArrayList[p];
     private HashMap h = new HashMap();
 
     public Finder() {}
 
+    // buildTable method initializes either the hashTable of hashMap object depending on chosen solution
     public void buildTable(BufferedReader br, int keyCol, int valCol) throws IOException {
+        // Utilizes a buffered reader that iterates through a file to read in the different key value pairs (nodes)
         String line = br.readLine();
         String[] cur;
         String key;
@@ -30,13 +33,16 @@ public class Finder {
             cur = line.split(",");
             key = cur[keyCol];
             val = cur[valCol];
-//            addToHashTable(new Node(key, val));
+            // Code below is for the linked list hash table implementation
+            // addToHashTable(new Node(key, val));
+            // This code is for the linear probing approach
             h.add(new Node(key, val));
             line = br.readLine();
         }
         br.close();
     }
 
+    // All this code below if for the linked list approach
 //    public void addToHashTable(Node n) {
 //        int hash = hash(n.getKey());
 //        if (hashTable[hash] == null) {
@@ -70,8 +76,8 @@ public class Finder {
 //        return INVALID;
 //    }
 
+    // Query utilizes linear probing method in HashMap class to search for a string
     public String query(String s){
         return h.get(s);
-
     }
 }
