@@ -16,8 +16,8 @@ public class Finder {
     private static final int p = 100003;
     private static final int radix = 256;
     private static final String INVALID = "INVALID KEY";
-    private ArrayList<Node>[] hashTable = new ArrayList[p];
-//    private HashMap h = new HashMap();
+//    private ArrayList<Node>[] hashTable = new ArrayList[p];
+    private HashMap h = new HashMap();
 
     public Finder() {}
 
@@ -30,48 +30,48 @@ public class Finder {
             cur = line.split(",");
             key = cur[keyCol];
             val = cur[valCol];
-            addToHashTable(new Node(key, val));
-//            h.add(new Node(key, val));
+//            addToHashTable(new Node(key, val));
+            h.add(new Node(key, val));
             line = br.readLine();
         }
         br.close();
     }
 
-    public void addToHashTable(Node n) {
-        int hash = hash(n.getKey());
-        if (hashTable[hash] == null) {
-            hashTable[hash] = new ArrayList<Node>();
-        }
-        hashTable[hash(n.getKey())].add(n);
-    }
-
-    public int hash(String str) {
-        return polyRollingHash(str, 0);
-    }
-
-    public int polyRollingHash(String str, int currentHash) {
-        if (str.isEmpty()) {
-            return currentHash;
-        }
-        int next = (((currentHash * radix) % p) + str.charAt(0)) % p;
-        return polyRollingHash(str.substring(1), next);
-    }
-
-    public String query(String key){
-        ArrayList<Node> keyValSet = hashTable[hash(key)];
-        if (keyValSet == null) {
-            return INVALID;
-        }
-        for (Node n : keyValSet) {
-            if (n.getKey().equals(key)) {
-                return n.getValue();
-            }
-        }
-        return INVALID;
-    }
-
-//    public String query(String s){
-//        return h.get(s);
-//
+//    public void addToHashTable(Node n) {
+//        int hash = hash(n.getKey());
+//        if (hashTable[hash] == null) {
+//            hashTable[hash] = new ArrayList<Node>();
+//        }
+//        hashTable[hash(n.getKey())].add(n);
 //    }
+//
+//    public int hash(String str) {
+//        return polyRollingHash(str, 0);
+//    }
+//
+//    public int polyRollingHash(String str, int currentHash) {
+//        if (str.isEmpty()) {
+//            return currentHash;
+//        }
+//        int next = (((currentHash * radix) % p) + str.charAt(0)) % p;
+//        return polyRollingHash(str.substring(1), next);
+//    }
+//
+//    public String query(String key){
+//        ArrayList<Node> keyValSet = hashTable[hash(key)];
+//        if (keyValSet == null) {
+//            return INVALID;
+//        }
+//        for (Node n : keyValSet) {
+//            if (n.getKey().equals(key)) {
+//                return n.getValue();
+//            }
+//        }
+//        return INVALID;
+//    }
+
+    public String query(String s){
+        return h.get(s);
+
+    }
 }
